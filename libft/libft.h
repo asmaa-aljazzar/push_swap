@@ -14,6 +14,8 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include "printf/ft_printf.h"
+
 //  Function Prototypes
 void	*ft_memset(void *ptr, int value, size_t len);
 void	ft_bzero(void *ptr, size_t len);

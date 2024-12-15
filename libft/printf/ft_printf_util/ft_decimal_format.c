@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_decimal_format.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/28 13:41:01 by aaljazza          #+#    #+#             */
-/*   Updated: 2024/09/28 13:41:08 by aaljazza         ###   ########.fr       */
+/*   Created: 2024/11/02 14:41:19 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/11/02 14:41:30 by aaljazza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-/*
-* Copy src to dst to until reach specific size for dst 
-*/
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	srcsize;
 
-	srcsize = ft_strlen(src);
-	if (dstsize > 0)
+#include "../ft_printf.h"
+
+int	ft_decimal_format(va_list args, int printed_chars)
+{
+	int		x;
+	char	*str;
+
+	x = va_arg(args, int);
+	ft_putnbr_fd(x, 1);
+	str = ft_itoa(x);
+	if (str)
 	{
-		if (dstsize > srcsize + 1)
-		{
-			ft_memcpy(dst, src, srcsize +1);
-		}
-		else
-		{
-			ft_memcpy(dst, src, dstsize - 1);
-			dst[dstsize - 1] = '\0';
-		}
+		printed_chars += ft_strlen(str);
+		free(str);
 	}
-	return (srcsize);
+	return (printed_chars);
 }
